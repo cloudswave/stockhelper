@@ -1,6 +1,6 @@
-简介
+简介----[开源地址](http://git.oschina.net/ethanzhu/stockhelper)
 --
-股票小助手 WebApp
+股票小助手 WebApp，提供股票计算小工具包括补仓、加仓、保本价、止盈止损价计算等.
 
 基于mobile-angular-ui，[angularjs中文社区](http://www.angularjs.cn/)
 
@@ -13,13 +13,13 @@ GettingStarted, Demo, Docs at http://mobileangularui.com.
 
 项目结构
 ----
-master分支：html源码，将部署到SAE[演示平台1](http://qmxlabs.sinaapp.com/StockHelper/)，[演示平台2](http://stockhelp.oschina.mopaas.com/)
+**master分支：html源码，将部署到SAE[演示平台1](http://qmxlabs.sinaapp.com/StockHelper/)，[演示平台2](http://stockhelp.oschina.mopaas.com/)**
 > 根目录<br>
 > ├ dist （框架js库及bootstrap css）<br>
 > ├ StockHelper （WebApp源码）<br>
 > ├ 截图 <br>
-> ├ demo (mobile-angular-ui Demo源码)<br>
-> ├ examples (mobile-angular-ui 案例)<br>
+> ├ demo (mobile-angular-ui Demo源码，可以去演示平台2查看效果)<br>
+> ├ examples (mobile-angular-ui 案例，可以去演示平台2查看效果)<br>
 
 安装配置
 ----
@@ -27,11 +27,7 @@ master分支：html源码，将部署到SAE[演示平台1](http://qmxlabs.sinaap
 **安装配置**
 
 1. git clone源码到本地；
-2. 根据情况配置项目文件：
-> 
->
-
-3. 运行配置,运行
+2. 直接放到服务器下运行;
 
 
 更新记录
@@ -51,4 +47,3 @@ master分支：html源码，将部署到SAE[演示平台1](http://qmxlabs.sinaap
 ![QQ截图20150201185024](http://git.oschina.net/uploads/images/2015/0201/190834_ff349d85_77541.png)
 
 ![QQ截图20150201185042](http://git.oschina.net/uploads/images/2015/0201/190834_bb687c9c_77541.png)
-
