@@ -1,0 +1,70 @@
+<div ui-content-for="title">
+  <span>设置</span>
+</div>
+
+<div class="scrollable">
+ <div class="scrollable-content section">
+   
+  <form role="form" name="form">
+    <fieldset>
+        <div class="form-group has-success has-feedback">
+          <label>佣金率</label>
+          <input type="number" 
+                 ng-model="setting.rates"
+                 class="form-control"
+                 step="0.000001"
+                 placeholder="输入佣金率"
+                 required
+                 >
+        </div>
+
+        <div class="form-group">
+          <label>沪市过户费率</label>
+          <input type="number"  
+                 class="form-control"
+                 ng-model="setting.hsRates"
+                 step="0.001"
+                 placeholder="请输入沪市过户费率"
+                 required>
+        </div>
+        <div class="form-group">
+          <label>印花税率</label>
+          <input type="number"  
+                 class="form-control"
+                 ng-model="setting.tax"
+                 step="0.001"
+                 placeholder="请输入印花税率"
+                 required>
+        </div>
+        <div class="form-group">
+          <label>止损位</label>
+          <input type="number"  
+                 class="form-control"
+                 ng-model="setting.stopLoss"
+                 step="0.01"
+                 placeholder="请输入止损位默认0.03"
+                 required>
+        </div>
+        <div class="form-group">
+          <label>止盈位</label>
+          <input type="number"  
+                 class="form-control"
+                 ng-model="setting.stopProfit"
+                 step="0.001"
+                 placeholder="请输入止盈位默认0.05"
+                 required>
+        </div>
+    </fieldset>
+    <hr>
+
+    <button class="btn btn-primary btn-block" ng-click='setting_save()' ng-disabled="form.$invalid">
+      保存
+    </button>
+
+    <div ui-content-for="navbarAction">
+      <a class='btn' ng-click='setting_save()'>保存</a>
+    </div>
+    <div class="alert alert-info" role="alert" ng-hide="alert_hide">{{tips}}</div>
+  </form>
+ </div>
+</div>

@@ -1,0 +1,119 @@
+<div ui-content-for="title">
+  <span>保本|止损止盈计算</span>
+</div>
+
+<div class="scrollable">
+ <div class="scrollable-content section">
+    <label>保存记录</label>
+<div class="alert alert-warning alert-dismissible" style="margin-bottom: 5px;" role="alert" ng-repeat="breakEven in breakEvens"> 
+  <delete ng-Model="breakEven"><button type="button" class="close" data-dismiss="alert"  ><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button></delete>
+  <div class="row">
+  <div class="col-xs-8 col-md-3">买入价格(数量):{{breakEven.buyPrice}}({{breakEven.buyCount}})</div>
+  <div class="col-xs-6 col-md-2">{{breakEven.exchangePlace}}</div>
+  <div class="col-xs-6 col-md-2">保本:{{breakEven.BEPrice}}</div>
+  <div class="col-xs-8 col-md-3">止盈:{{breakEven.SLPrice}},止损:{{breakEven.SPPrice}}</div>
+
+</div>    
+</div>
+    
+    
+    
+ <!--   <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>买入价格</th>
+          <th>买入数量</th>
+          <th>交易市场</th>
+          <th>保本止损止盈价</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="breakEven in breakEvens">
+          <td></td>
+          <td>{{breakEven.buyPrice}}</td>
+          <td>{{breakEven.buyCount}}</td>
+          <td>{{breakEven.exchangePlace}}</td>
+          <td>{{breakEven.BEPrice}}({{breakEven.SLPrice}},{{breakEven.SPPrice}})</td>
+          <td><delete ng-Model="breakEven"><a>Delete</a></delete></td>
+        </tr>
+      </tbody>
+    </table>-->
+
+
+ <hr>
+ <label>添加计算(请先在设置里面设置费率等)</label>
+  <form role="form" name="form"  >
+    <fieldset>
+        <div class="form-group has-success has-feedback">
+            <div class="radio">
+              <label>
+                          <input type="radio"  
+                             ng-model="breakEven.exchangePlace"
+                             value="上海A股"
+                        >
+                       上海A股
+              </label>
+            </div>
+            <div class="radio">
+              <label>
+                         <input type="radio"  
+                             ng-model="breakEven.exchangePlace"
+                             value="深圳A股"
+                        >
+                     深圳A股
+              </label>
+            </div>
+
+         <div class="form-group">
+          <label >买入价格</label>
+          <span class="text-danger" ng-show="form.buyRice.$error.required">请填写!</span>
+          <span class="text-danger" ng-show="form.buyRice.$error.number">请输入数值!</span>
+          <input type="number" 
+                 ng-model="breakEven.buyPrice"
+                 name="buyRice"
+                 class="form-control"
+                 min="0"
+                 step="0.01"
+                 placeholder="输入买入价格"
+                 required
+                 >
+        </div>
+
+        <div class="form-group">
+          <label  >股票数量</label>
+          <span class="text-danger" ng-show="form.buyCount.$error.required">请填写!</span>
+          <span class="text-danger" ng-show="form.buyCount.$error.number">请输入数值!</span>
+           <input type="number"  
+                 class="form-control"
+                 ng-model="breakEven.buyCount"
+                 name="buyCount"
+                 min="1"
+                 step="1"
+                 placeholder="请输入买入数量"
+                 required>
+        </div>
+
+        <div class="form-group">
+          <label>保存记录</label>
+          <ui-switch 
+            ng-model='Params.breakEvenRememberMe'></ui-switch>
+        </div>
+    </fieldset>
+    <hr>
+
+    <button class="btn btn-primary btn-block" ng-click='breakEven_cal()' ng-disabled="form.$invalid">
+      计算
+    </button>
+<br>
+<div class="alert alert-info" role="alert" ng-show="breakEven.BEPrice">
+保本价为：{{breakEven.BEPrice}}，止损价({{setting.stopLoss}})：{{breakEven.SLPrice}}，止盈价({{setting.stopProfit}})：{{breakEven.SPPrice}}
+    
+</div>
+    <div ui-content-for="navbarAction">
+      <a class='btn' ng-click='_breakEven_save()'>保存</a>
+    </div>
+  </form>
+ </div>
+</div>

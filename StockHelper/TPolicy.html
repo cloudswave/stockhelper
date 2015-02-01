@@ -1,0 +1,152 @@
+<div ui-content-for="title">
+  <span>T策略成本计算</span>
+</div>
+
+<div class="scrollable">
+ <div class="scrollable-content section">
+ 
+    <label>保存记录</label>
+<div class="alert alert-warning alert-dismissible" style="margin-bottom: 5px;" role="alert" ng-repeat="TPolicy in TPolicys"> 
+  <button type="button" class="close" data-dismiss="alert" ng-click="TPolicy_delete(TPolicy._id)"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+  <div class="row">
+  <div class="col-xs-8 col-md-2">成本(数量):{{TPolicy.currentPrice}}({{TPolicy.currentCount}})</div>
+  <div class="col-xs-8 col-md-2">交易价(数量):{{TPolicy.sellPrice}}({{TPolicy.sellCount}})</div>
+  <div class="col-xs-10 col-md-3">摊薄成本(剩余数量):{{TPolicy.CostPrice}}({{TPolicy.CostCount}})</div>
+  <div class="col-xs-6 col-md-2">{{TPolicy.exchangePlace}}（{{TPolicy.operate}}）</div>
+</div>    
+</div>
+    
+  
+    <!--<table class="table table-hover">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>成本(数量)</th>
+          <th>交易价(数量)</th>
+          <th>交易市场</th>
+          <th>摊薄成本(数量)</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="TPolicy in TPolicys">
+          <td></td>
+          <td>{{TPolicy.currentPrice}}({{TPolicy.currentCount}})</td>
+          <td>{{TPolicy.sellPrice}}({{TPolicy.sellCount}})</td>
+          <td>{{TPolicy.exchangePlace}}</td>
+          <td>{{TPolicy.CostPrice}}({{TPolicy.CostCount}})</td>
+          <td><a ng-click="TPolicy_delete(TPolicy._id)">Delete</a></td>
+        </tr>
+      </tbody>
+    </table>-->
+
+
+ <hr>
+ <label>添加计算(请先在设置里面设置费率等)</label>
+  <form role="form" name="form"  >
+    <fieldset>
+        <div class="form-group has-success has-feedback">
+            <div class="radio">
+              <label>
+                          <input type="radio"  
+                             ng-model="TPolicy.exchangePlace"
+                             value="上海A股"
+                        >
+                       上海A股
+              </label>
+            </div>
+            <div class="radio">
+              <label>
+                         <input type="radio"  
+                             ng-model="TPolicy.exchangePlace"
+                             value="深圳A股"
+                        >
+                     深圳A股
+              </label>
+            </div>
+
+         <div class="form-group">
+          <label >当前成本价</label>
+          <span class="text-danger" ng-show="form.currentPrice.$error.required">请填写!</span>
+          <span class="text-danger" ng-show="form.currentPrice.$error.number">请输入数值!</span>
+          <input type="number" 
+                 ng-model="TPolicy.currentPrice"
+                 name="currentPrice"
+                 class="form-control"
+                 min="0"
+                 step="0.001"
+                 placeholder="输入当前成本价"
+                 required
+                 >
+        </div>
+
+        <div class="form-group">
+          <label  >持股数量</label>
+          <span class="text-danger" ng-show="form.currentCount.$error.required">请填写!</span>
+          <span class="text-danger" ng-show="form.currentCount.$error.number">请输入数值!</span>
+           <input type="number"  
+                 class="form-control"
+                 ng-model="TPolicy.currentCount"
+                 name="currentCount"
+                 min="1"
+                 step="1"
+                 placeholder="请输入持股数量"
+                 required>
+        </div>
+  <div class="form-group">       
+<select class="form-control" ng-model="TPolicy.operate" ng-options="m.name as m.name for m in models">
+  <option value="">-- 请选择 --</option>
+</select>
+</div>
+        
+         <div class="form-group">
+          <label >股价</label>
+          <span class="text-danger" ng-show="form.buyRice.$error.required">请填写!</span>
+          <span class="text-danger" ng-show="form.buyRice.$error.number">请输入数值!</span>
+          <input type="number" 
+                 ng-model="TPolicy.sellPrice"
+                 name="sellRice"
+                 class="form-control"
+                 min="0"
+                 step="0.01"
+                 placeholder="输入股价"
+                 required
+                 >
+        </div>
+        
+        <div class="form-group">
+          <label>数量</label>
+          <span class="text-danger" ng-show="form.sellCount.$error.required">请填写!</span>
+          <span class="text-danger" ng-show="form.sellCount.$error.number">请输入数值!</span>
+           <input type="number"  
+                 class="form-control"
+                 ng-model="Params.sellCount"
+                 name="sellCount"
+                 min="1"
+                 step="1"
+                 placeholder="请输入数量"
+                 required>
+        </div>
+
+        <div class="form-group">
+          <label>保存结果</label>
+          <ui-switch 
+            ng-model='Params.RememberMe'></ui-switch>
+        </div>
+    </fieldset>
+    <hr>
+
+    <button class="btn btn-primary btn-block" ng-click='TPolicy_cal()' ng-disabled="form.$invalid">
+      计算
+    </button>
+<br>
+<div class="alert alert-info" role="alert" ng-show="TPolicy.CostPrice">
+摊薄成本价为：{{TPolicy.CostPrice}}，卖出后剩余数量：{{TPolicy.CostCount}}
+    
+</div>
+    <div ui-content-for="navbarAction">
+      <a class='btn' ng-click='_TPolicy_save()'>保存</a>
+    </div>
+  </form>
+ </div>
+</div>
