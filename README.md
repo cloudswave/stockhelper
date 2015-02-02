@@ -34,7 +34,7 @@ GettingStarted, Demo, Docs at http://mobileangularui.com.
 ----
 
  - 2015.2.1：git配置  ---Ethan
- - 待加
+ - 2015.2.2： 加入html5应用manifest缓存功能  ---Ethan
 
 
 演示截图
